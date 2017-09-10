@@ -1,3 +1,5 @@
+import { Money } from "./money";
+
 export interface Item {
-    readonly cost : number;
+    readonly cost : Money;
 }

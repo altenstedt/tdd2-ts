@@ -1,4 +1,5 @@
 import { Item } from "./item";
+import { Money } from "./money";
 
 export class Basket {
     private readonly items : Item[] = [];
@@ -11,15 +12,15 @@ export class Basket {
         return this.items.length;
     }
 
-    public get total() : number {
+    public get total() : Money {
         return this.items.length === 0
-            ? 0
+            ? Money.Zero
             : this.items
                 .map(item => item.cost)
-                .reduce((sum, x) => sum + x);
+                .reduce((sum, x) => sum.plus(x));
     }
 
-    public get totalWithVat() : number {
-        return this.total * 1.25;
+    public get totalWithVat() : Money {
+        return this.total.multiply(1.25);
     }
 }
